@@ -1,0 +1,13 @@
+name: henrikac
+version: 0.1.0
+
+authors:
+  - Henrik Christensen <sensen1695@hotmail.com>
+
+targets:
+  henrikac:
+    main: src/henrikac.cr
+
+crystal: 1.0.0
+
+license: MIT
