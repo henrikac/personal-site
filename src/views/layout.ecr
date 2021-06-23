@@ -4,20 +4,50 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+		<%# <link rel="stylesheet" href="/css/main.css"> %>
 
 		<title>HenrikAC</title>
 	</head>
-	<body>
-		<nav>
+	<body class="has-navbar-fixed-top">
+		<nav class="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation">
+			<div class="container">
+				<div class="navbar-brand">
+					<a class="navbar-item is-size-3 has-text-weight-medium" href="/">HenrikAC</a>
+
+					<a role="button" class="navbar-burger is-active" aria-label="menu" aria-expanded="false" data-target="mainNavbar">
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+					</a>
+				</div>
+
+				<div id="mainNavbar" class="navbar-menu is-active">
+					<div class="navbar-end">
+						<a href="/" class="navbar-item">
+							Home
+						</a>
+						<a href="#" class="navbar-item">
+							Projects
+						</a>
+						<a href="#" class="navbar-item">
+							About me
+						</a>
+					</div>
+				</div>
+			</div>
 		</nav>
 
 		<main>
 			<%= content %>
 		</main>
 
-		<footer>
-			<p>&copy; <%= Time.utc.year %> Henrik A. Christensen</p>
+		<footer class="footer">
+			<div class="content has-text-centered">
+				<p>&copy; <%= Time.utc.year %> Henrik A. Christensen</p>
+			</div>
 		</footer>
+
+		<script src="/js/styles.js"></script>
 	</body>
 </html>
