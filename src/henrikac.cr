@@ -1,6 +1,8 @@
-# TODO: Write documentation for `Henrikac`
-module Henrikac
-  VERSION = "0.1.0"
+require "kemal"
 
-  # TODO: Put your code here
+get "/" do
+  render "src/views/index.ecr", "src/views/layout.ecr"
 end
+
+Kemal.run
+
