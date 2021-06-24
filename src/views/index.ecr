@@ -14,124 +14,42 @@
 	<div class="container">
 		<h2 class="title has-text-centered">Projects</h2>
 
-		<div class="columns is-multiline is-centered mt-6">
-			<div class="column is-4 mt-6">
-				<div class="card">
-					<header class="card-header is-shadowless">
-						<p class="card-header-title is-centered is-size-5">pokeapi</p>
-					</header>
-					<div class="card-content">
-						<div class="content">
-							Crystal wrapper library for PokéAPI.
+		<% if repos.empty? %>
+			<p class="has-text-centered is-italic mt-6">There was an error loading the projects...!</p>
+		<% else %>
+			<div class="columns is-multiline is-centered mt-6">
+				<% repos.each_with_index do |repo, i| %>
+					<div class="column is-4 mt-6 <%= "is-offset-1" if i % 2 != 0 %>">
+						<div class="card">
+							<header class="card-header is-shadowless">
+								<p class="card-header-title is-centered is-size-5"><%= repo.title %></p>
+							</header>
+							<div class="card-content">
+								<div class="content">
+									<%= repo.description %>
+								</div>
+							</div>
+							<footer class="card-footer mt-auto">
+								<span class="card-footer-item"><%= repo.language %></span>
+								<span class="card-footer-item">
+									<span class="icon pr-3">
+										<i class="fas fa-star"></i>
+									</span>
+									<%= repo.stars %>
+								</span>
+								<span class="card-footer-item">
+									<a href="<%= repo.url %>" target="_blank">
+										<span class="icon">
+											<i class="fab fa-github"></i>
+										</span>
+										view source
+									</a>
+								</span>
+							</footer>
 						</div>
 					</div>
-					<footer class="card-footer mt-auto">
-						<span class="card-footer-item">Language</span>
-						<span class="card-footer-item">
-							<span class="icon pr-3">
-								<i class="fas fa-star"></i>
-							</span>
-							0
-						</span>
-						<span class="card-footer-item">
-							<a href="#" target="_blank">
-								<span class="icon">
-									<i class="fab fa-github"></i>
-								</span>
-								view source
-							</a>
-						</span>
-					</footer>
-				</div>
+				<% end %>
 			</div>
-			<div class="column is-4 is-offset-1 mt-6">
-				<div class="card">
-					<header class="card-header is-shadowless">
-						<p class="card-header-title is-centered is-size-5 p-3">prettytable</p>
-					</header>
-					<div class="card-content">
-						<div class="content">
-							Crystal library that makes it easy to build simple text tables.
-						</div>
-					</div>
-					<footer class="card-footer mt-auto">
-						<span class="card-footer-item">Language</span>
-						<span class="card-footer-item">
-							<span class="icon pr-3">
-								<i class="fas fa-star"></i>
-							</span>
-							0
-						</span>
-						<span class="card-footer-item">
-							<a href="#" target="_blank">
-								<span class="icon">
-									<i class="fab fa-github"></i>
-								</span>
-								view source
-							</a>
-						</span>
-					</footer>
-				</div>
-			</div>
-			<div class="column is-4 mt-6">
-				<div class="card">
-					<header class="card-header is-shadowless">
-						<p class="card-header-title is-centered is-size-5 p-3">lib-giphy</p>
-					</header>
-					<div class="card-content">
-						<div class="content">
-							A library that makes it easy to interact with the GIPHY API.
-						</div>
-					</div>
-					<footer class="card-footer mt-auto">
-						<span class="card-footer-item">Language</span>
-						<span class="card-footer-item">
-							<span class="icon pr-3">
-								<i class="fas fa-star"></i>
-							</span>
-							0
-						</span>
-						<span class="card-footer-item">
-							<a href="#" target="_blank">
-								<span class="icon">
-									<i class="fab fa-github"></i>
-								</span>
-								view source
-							</a>
-						</span>
-					</footer>
-				</div>
-			</div>
-			<div class="column is-4 is-offset-1 mt-6">
-				<div class="card">
-					<header class="card-header is-shadowless">
-						<p class="card-header-title is-centered is-size-5 p-3">user-dirs</p>
-					</header>
-					<div class="card-content">
-						<div class="content">
-							A small shard that provides a few useful macros to look up user-specific directories.
-This shard is inspired by golang's UserCacheDir, UserConfigDir and UserHomeDir.
-						</div>
-					</div>
-					<footer class="card-footer mt-auto">
-						<span class="card-footer-item">Language</span>
-						<span class="card-footer-item">
-							<span class="icon pr-3">
-								<i class="fas fa-star"></i>
-							</span>
-							0
-						</span>
-						<span class="card-footer-item">
-							<a href="#" target="_blank">
-								<span class="icon">
-									<i class="fab fa-github"></i>
-								</span>
-								view source
-							</a>
-						</span>
-					</footer>
-				</div>
-			</div>
-		</div>
+		<% end %>
 	</div>
 </section>
