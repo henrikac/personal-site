@@ -1,3 +1,10 @@
+const collapseMenu = (burger, menu) => {
+	if (burger.classList.contains('is-active') && menu.classList.contains('is-active')) {
+		burger.classList.remove('is-active');
+		menu.classList.remove('is-active');
+	}
+};
+
 document.addEventListener('DOMContentLoaded', () => {
 	const scrollNavs = document.getElementsByClassName('navbar-scroll');
 	const navbarBurger = document.querySelector('.navbar-burger');
@@ -5,10 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// removes the class is-active on initial load because is-active is active by default
 	// for users that has JavaScript turned off
-	if (navbarBurger.classList.contains('is-active') && navbarMenu.classList.contains('is-active')) {
-		navbarBurger.classList.remove('is-active');
-		navbarMenu.classList.remove('is-active');
-	}
+	collapseMenu(navbarBurger, navbarMenu);
 
 	navbarBurger.addEventListener('click', () => {
 		navbarBurger.classList.toggle('is-active');
@@ -21,6 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			const hrefId = navLink.getAttribute('href').substring(1);
 			const targetSection = document.getElementById(hrefId);
+
+			collapseMenu(navbarBurger, navbarMenu);
 
 			targetSection.scrollIntoView({behavior: "smooth"});
 		});
