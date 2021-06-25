@@ -12,7 +12,7 @@
 
 <section class="section is-large">
 	<div class="container">
-		<h2 class="title has-text-centered">Projects</h2>
+		<h2 class="title has-text-centered is-size-2">Projects</h2>
 
 		<% if repos.empty? %>
 			<p class="has-text-centered is-italic mt-6">There was an error loading the projects...!</p>
@@ -20,12 +20,12 @@
 			<div class="columns is-multiline is-centered mt-6">
 				<% repos.each_with_index do |repo, i| %>
 					<div class="column is-4 mt-6 <%= "is-offset-1" if i % 2 != 0 %>">
-						<div class="card">
+						<div class="card card-equal-height">
 							<header class="card-header is-shadowless">
 								<p class="card-header-title is-centered is-size-5"><%= repo.title %></p>
 							</header>
-							<div class="card-content">
-								<div class="content">
+							<div class="card-content card-equal-height-content">
+								<div class="content is-medium">
 									<%= repo.description %>
 								</div>
 							</div>
@@ -51,5 +51,41 @@
 				<% end %>
 			</div>
 		<% end %>
+	</div>
+</section>
+
+<section class="section is-medium has-background-link has-text-white">
+	<div class="container">
+		<h2 class="title has-text-white is-size-2">About me</h2>
+
+		<div class="columns">
+			<div class="column is-one-third">
+					<div class="content is-medium">
+						<p>I love to design and build software, whether it be a library or a web application. 
+						I enjoy trying new technologies and I am currently teaching myself <a href="https://crystal-lang.org/" target="_blank" class="has-text-white is-underlined">crystal</a>.
+						</p>
+					</div>
+			</div>
+			<div class="column is-one-quarter is-offset-one-quarter">
+				<div class="card">
+					<header class="card-header is-shadowless">
+						<h3 class="card-header-title is-centered is-size-4">Toolkit</h3>
+					</header>
+					<div class="card-content">
+						<div class="content is-medium">
+							<ul id="toolkit" class="mt-0 ml-0">
+								<li class="has-text-centered">Crystal</li>
+								<li class="has-text-centered">Python</li>
+								<li class="has-text-centered">C#</li>
+								<li class="has-text-centered">JavaScript</li>
+								<li class="has-text-centered">HTML/CSS</li>
+								<li class="has-text-centered">Bootstrap</li>
+								<li class="has-text-centered">Bulma</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </section>
