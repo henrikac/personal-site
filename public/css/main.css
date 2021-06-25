@@ -1,14 +1,11 @@
-#arrow {
-	margin-top: 6rem;
-	border: 1px solid #fff;
-	border-radius: 50%;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+	font-family: 'Poppins', sans-serif;
 }
 
-#arrow:hover {
-	cursor: pointer;
-	color: #485fc7;
-	background-color: #fff;
-	transition: 0.3s ease;
+.letter-spacing-1 {
+	letter-spacing: 1px;
 }
 
 #toolkit {
@@ -18,12 +15,6 @@
 .social-media:hover {
 	color: #30449c;
 	transition: 0.4s ease;
-}
-
-/* Bulma */
-
-.navbar-item {
-	letter-spacing: 1px;
 }
 
 .equal-column-height {
@@ -38,4 +29,10 @@
 
 .card-equal-height-content {
 	flex: auto;
+}
+
+/* Bulma */
+
+.navbar-item {
+	letter-spacing: 1px;
 }

@@ -2,15 +2,24 @@
 	<div class="hero-body">
 		<div class="container has-text-centered">
 			<h2 class="title is-size-1">Henrik Abel</h2>
-			<p class="subtitle">Software Developer</p>
-			<span id="arrow" class="icon p-5">
-				<i class="fa fa-3x fa-angle-down" aria-hidden="true"></i>
-			</span>
+			<p class="subtitle text-spacing-1">&lt; Software Developer &gt;</p>
+			<div class="content">
+				<a href="https://twitter.com/henrikabel" target="_blank">
+					<span class="icon is-large mx-2">
+						<i class="fab fa-2x fa-twitter" aria-hidden="true"></i>
+					</span>
+				</a>
+				<a href="https://github.com/henrikac" target="_blank">
+					<span class="icon is-large mx-2">
+						<i class="fab fa-2x fa-github" aria-hidden="true"></i>
+					</span>
+				</a>
+			</div>
 		</div>
 	</div>
 </section>
 
-<section class="section is-large">
+<section id="projects" class="section is-medium">
 	<div class="container">
 		<h2 class="title has-text-centered is-size-2">Projects</h2>
 
@@ -19,10 +28,10 @@
 		<% else %>
 			<div class="columns is-multiline is-centered mt-6">
 				<% repos.each_with_index do |repo, i| %>
-					<div class="column is-4 mt-6 <%= "is-offset-1" if i % 2 != 0 %>">
+					<div class="column equal-column-height is-half-desktop is-offset-0-desktop is-4-widescreen mt-6 <%= "is-offset-1-widescreen" if i % 2 != 0 %>">
 						<div class="card card-equal-height">
 							<header class="card-header is-shadowless">
-								<p class="card-header-title is-centered is-size-5"><%= repo.title %></p>
+								<p class="card-header-title is-centered is-size-5 is-size-4-mobile"><%= repo.title %></p>
 							</header>
 							<div class="card-content card-equal-height-content">
 								<div class="content is-medium">
@@ -38,11 +47,11 @@
 									<%= repo.stars %>
 								</span>
 								<span class="card-footer-item">
-									<a href="<%= repo.url %>" target="_blank">
-										<span class="icon">
-											<i class="fab fa-github"></i>
+									<a href="<%= repo.url %>" target="_blank" class="has-text-dark">
+										<span class="icon is-medium">
+											<i class="fab fa-lg fa-github"></i>
 										</span>
-										view source
+										<span class="is-hidden-touch">view code</span>
 									</a>
 								</span>
 							</footer>
@@ -54,17 +63,17 @@
 	</div>
 </section>
 
-<section class="section is-medium has-background-link has-text-white">
+<section id="about" class="section is-medium has-background-link has-text-white">
 	<div class="container">
-		<h2 class="title has-text-white is-size-2">About me</h2>
 
 		<div class="columns">
-			<div class="column is-one-third">
-					<div class="content is-medium">
-						<p>I love to design and build software, whether it be a library or a web application. 
-						I enjoy trying new technologies and I am currently teaching myself <a href="https://crystal-lang.org/" target="_blank" class="has-text-white is-underlined">crystal</a>.
-						</p>
-					</div>
+			<div class="column is-one-third is-offset-1-desktop">
+				<h2 class="title has-text-white is-size-2">About me</h2>
+				<div class="content is-medium">
+					<p>I love to design and build software, whether it be a library or a web application. 
+					I enjoy trying new technologies and I am currently teaching myself <a href="https://crystal-lang.org/" target="_blank" class="has-text-white is-underlined">crystal</a>.
+					</p>
+				</div>
 			</div>
 			<div class="column is-one-quarter is-offset-one-quarter">
 				<div class="card">
