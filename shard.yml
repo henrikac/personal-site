@@ -15,3 +15,9 @@ license: MIT
 dependencies:
   kemal:
     github: kemalcr/kemal
+  kemal-session:
+    github: kemalcr/kemal-session
+  kemal-csrf:
+    github: kemalcr/kemal-csrf
+  dotenv:
+    github: gdotdesign/cr-dotenv
