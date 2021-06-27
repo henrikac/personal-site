@@ -1,5 +1,9 @@
 version: 2.0
 shards:
+  db:
+    git: https://github.com/crystal-lang/crystal-db.git
+    version: 0.10.1
+
   dotenv:
     git: https://github.com/gdotdesign/cr-dotenv.git
     version: 1.0.0
@@ -23,6 +27,10 @@ shards:
   kilt:
     git: https://github.com/jeromegn/kilt.git
     version: 0.4.1
+
+  pg:
+    git: https://github.com/will/crystal-pg.git
+    version: 0.23.2
 
   radix:
     git: https://github.com/luislavena/radix.git

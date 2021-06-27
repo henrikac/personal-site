@@ -35,6 +35,12 @@
 						<a href="#about" class="navbar-item navbar-scroll">
 							About me
 						</a>
+						<% if env.session.object?("user") %>
+							<form method="POST" action="/logout" class="navbar-item">
+								<input type="hidden" name="authenticity_token" value='<%= env.session.string("csrf") %>'>
+								<button type="submit" class="button is-link">Log out</button>
+							</form>
+						<% end %>
 					</div>
 				</div>
 			</div>

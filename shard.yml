@@ -21,3 +21,5 @@ dependencies:
     github: kemalcr/kemal-csrf
   dotenv:
     github: gdotdesign/cr-dotenv
+  pg:
+    github: will/crystal-pg
