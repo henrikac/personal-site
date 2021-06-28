@@ -4,6 +4,7 @@ Dotenv.load
 require "kemal"
 require "kemal-session"
 require "kemal-csrf"
+require "github-repos"
 require "./**"
 
 Kemal::Session.config do |config|
@@ -13,7 +14,11 @@ end
 add_handler CSRF.new
 add_handler AnonymousHandler.new({"/login" => ["GET", "POST"]})
 add_handler AuthenticationHandler.new({"/logout" => ["POST"]})
-add_handler AuthorizationHandler.new({"/admin" => ["GET"]})
+add_handler AuthorizationHandler.new({
+  "/admin" => ["GET"],
+  "/repos" => ["POST"],
+  "/repos/delete/:id" => ["POST"]
+})
 
 Database.init
 
@@ -26,12 +31,16 @@ if Kemal.config.env == "development"
 end
 
 mut = Mutex.new
-repos = Array(GitHub::Repo).new
+repository_titles = Array(String).new
+gh_repos = Array(GitHub::Repo).new
+
+db_repos = Repository.find_all
+db_repos.each { |r| repository_titles << r.title }
 
 spawn do
   loop do
     mut.lock
-    repos = GitHub.fetch_repos(["pokeapi", "prettytable", "lib-giphy", "user-dirs"])
+    gh_repos = GitHub.fetch_repos("henrikac", repository_titles)
     mut.unlock
 
     sleep 5.minutes
@@ -95,8 +104,60 @@ end
 ################
 
 get "/admin" do |env|
+  repositories = Repository.find_all
+  repositories.sort! { |a, b| a.title <=> b.title }
   render "src/views/admin/index.ecr", "src/views/layout.ecr"
 end
 
+#####################
+# REPOSITORY ROUTES #
+#####################
+
+post "/repos" do |env|
+  title = env.params.body["title"].as(String)
+
+  if title.empty?
+    env.session.string("title_error", "Please enter a title")
+    repositories = Repository.find_all
+    template = render "src/views/admin/index.ecr", "src/views/layout.ecr"
+    halt env, status_code: 400, response: template
+  end
+
+  repo = Repository.find_by_title(title)
+
+  if !repo.nil?
+    env.session.string("title_error", "Title must be unique")
+    repositories = Repository.find_all
+    template = render "src/views/admin/index.ecr", "src/views/layout.ecr"
+    halt env, status_code: 400, response: template
+  end
+
+  Repository.create(title)
+
+  mut.lock
+  repository_titles << title
+  mut.unlock
+
+  env.redirect "/admin"
+end
+
+post "/repos/delete/:id" do |env|
+  begin
+    id = env.params.body["id"].as(String).to_i
+  rescue ArgumentError
+    # TODO: Handle this
+    env.redirect "/admin"
+  end
+
+  if repo = Repository.find_by_id(id.not_nil!)
+    Repository.delete(repo)
+
+    mut.lock
+    repository_titles.delete(repo.title)
+    mut.unlock
+  end
+
+  env.redirect "/admin"
+end
 
 Kemal.run

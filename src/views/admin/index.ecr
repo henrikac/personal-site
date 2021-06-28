@@ -1,5 +1,64 @@
 <section class="section is-medium">
 	<div class="container">
 		<h2 class="title has-text-centered">Admin</h2>
+
+		<div class="columns is-centered">
+			<div class="column is-4 box mb-0">
+				<h3 class="subtitle has-text-weight-semibold">Projects</h3>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Title</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% repositories.each do |repo| %>
+							<tr>
+								<td><%= repo.id %></td>
+								<td><%= repo.title %></td>
+								<td>
+									<form method="POST" action="/repos/delete/<%= repo.id %>">
+										<input type="hidden" name="authenticity_token" value='<%= env.session.string("csrf") %>'>
+										<input type="hidden" name="id" value="<%= repo.id %>">
+										<button type="submit" class="button is-danger is-small">
+											<span class="icon is-small">
+												<i class="fas fa-trash-alt"></i>
+											</span>
+										</button>
+									</form>
+								</td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+
+				<form method="POST" action="/repos">
+					<input type="hidden" name="authenticity_token" value='<%= env.session.string("csrf") %>'>
+					<div class="field is-horizontal">
+						<div class="field-body">
+							<div class="field">
+								<div class="control is-expanded">
+									<input type="text" class="input" name="title" placeholder="Title">
+								</div>
+								<% if title_error = env.session.string?("title_error") %>
+									<p class="help is-danger"><%= title_error %></p>
+								<% end %>
+							</div>
+							<div class="field">
+								<div class="control">
+									<button type="submit" class="button is-link">Add</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="column is-4 is-offset-1 box">
+				<h3 class="subtitle has-text-weight-semibold">Users</h3>
+			</div>
+		</div>
 	</div>
 </section>

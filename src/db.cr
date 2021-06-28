@@ -1,5 +1,3 @@
-require "crypto/bcrypt/password"
-
 require "db"
 require "pg"
 
@@ -8,7 +6,7 @@ module Database
 
   def self.init
     DB.open CONN do |db|
-      result = db.exec "CREATE TABLE IF NOT EXISTS users (
+      db.exec "CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         email VARCHAR(256) UNIQUE NOT NULL,
         normalized_email VARCHAR(256) UNIQUE NOT NULL,
@@ -17,6 +15,13 @@ module Database
         updated_at TIMESTAMP DEFAULT (NOW() AT TIME ZONE 'utc'),
         is_admin BOOLEAN DEFAULT false
         );"
+
+      db.exec "CREATE TABLE IF NOT EXISTS repositories (
+        id SERIAL PRIMARY KEY,
+        title VARCHAR(140) UNIQUE NOT NULL,
+        created_at TIMESTAMP DEFAULT (NOW() AT TIME ZONE 'utc'),
+        updated_at TIMESTAMP DEFAULT (NOW() AT TIME ZONE 'utc')
+      );"
     end
   end
 end

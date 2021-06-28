@@ -12,6 +12,10 @@ shards:
     git: https://github.com/crystal-loot/exception_page.git
     version: 0.1.5
 
+  github-repos:
+    git: https://github.com/henrikac/github-repos.git
+    version: 0.1.0+git.commit.a715e7aae6595064c85e8262fd926d13244c526b
+
   kemal:
     git: https://github.com/kemalcr/kemal.git
     version: 1.0.0

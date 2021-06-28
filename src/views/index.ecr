@@ -23,11 +23,11 @@
 	<div class="container">
 		<h2 class="title has-text-centered pt-6 is-size-2">Projects</h2>
 
-		<% if repos.empty? %>
+		<% if gh_repos.empty? %>
 			<p class="has-text-centered is-italic mt-6">There was an error loading the projects...!</p>
 		<% else %>
 			<div class="columns is-multiline is-centered mt-6">
-				<% repos.each_with_index do |repo, i| %>
+				<% gh_repos.each_with_index do |repo, i| %>
 					<div class="column equal-column-height is-half-desktop is-offset-0-desktop is-4-widescreen mt-6 <%= "is-offset-1-widescreen" if i % 2 != 0 %>">
 						<div class="card card-equal-height">
 							<header class="card-header is-shadowless">
