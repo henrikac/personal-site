@@ -25,3 +25,5 @@ dependencies:
     github: will/crystal-pg
   github-repos:
     github: henrikac/github-repos
+  kemal-authorizer:
+    github: henrikac/kemal-authorizer

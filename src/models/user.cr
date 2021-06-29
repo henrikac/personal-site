@@ -48,14 +48,3 @@ class User
     end
   end
 end
-
-class UserStorableObject
-  include JSON::Serializable
-  include Kemal::Session::StorableObject
-
-  property id : Int32
-  property email : String
-  property is_admin : Bool
-
-  def initialize(@id : Int32, @email : String, @is_admin : Bool); end
-end

@@ -4,6 +4,7 @@ Dotenv.load
 require "kemal"
 require "kemal-session"
 require "kemal-csrf"
+require "kemal-authorizer"
 require "github-repos"
 require "./**"
 
@@ -12,9 +13,9 @@ Kemal::Session.config do |config|
 end
 
 add_handler CSRF.new
-add_handler AnonymousHandler.new({"/login" => ["GET", "POST"]})
-add_handler AuthenticationHandler.new({"/logout" => ["POST"]})
-add_handler AuthorizationHandler.new({
+add_handler Kemal::Authorizer::AnonymousHandler.new({"/login" => ["GET", "POST"]})
+add_handler Kemal::Authorizer::AuthenticationHandler.new({"/logout" => ["POST"]})
+add_handler Kemal::Authorizer::AuthorizationHandler.new({
   "/admin" => ["GET"],
   "/repos" => ["POST"],
   "/repos/delete/:id" => ["POST"]
@@ -83,8 +84,8 @@ post "/login" do |env|
     halt env, status_code: 400, response: template
   end
 
-  auth_user = UserStorableObject.new(user.id, user.email, user.is_admin)
-  env.session.object("user", auth_user)
+  auth_user = Kemal::Authorizer::UserStorableObject.new(user.id, user.email, user.is_admin)
+  env.session.object(Kemal::Authorizer.config.user_obj_name, auth_user)
 
   nxt = env.params.query["next"]?
   if !nxt.nil?

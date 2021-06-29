@@ -14,11 +14,15 @@ shards:
 
   github-repos:
     git: https://github.com/henrikac/github-repos.git
-    version: 0.1.0+git.commit.a715e7aae6595064c85e8262fd926d13244c526b
+    version: 0.1.0
 
   kemal:
     git: https://github.com/kemalcr/kemal.git
     version: 1.0.0
+
+  kemal-authorizer:
+    git: https://github.com/henrikac/kemal-authorizer.git
+    version: 0.3.0
 
   kemal-csrf:
     git: https://github.com/kemalcr/kemal-csrf.git
