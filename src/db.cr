@@ -2,7 +2,7 @@ require "db"
 require "pg"
 
 module Database
-  CONN = "postgres://#{ENV["PG_USER"]}:#{ENV["PG_PASS"]}@#{ENV["PG_HOST"]}:#{ENV["PG_PORT"]}/#{ENV["PG_NAME"]}"
+  CONN = ENV["DATABASE_URL"]
 
   def self.init
     DB.open CONN do |db|
