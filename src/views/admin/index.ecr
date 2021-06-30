@@ -3,10 +3,10 @@
 		<h2 class="title has-text-centered">Admin</h2>
 
 		<div class="columns is-centered">
-			<div class="column is-4 box mb-0">
+			<div class="column is-4 mb-0">
 				<h3 class="subtitle has-text-weight-semibold">Projects</h3>
 
-				<table class="table">
+				<table class="table is-fullwidth">
 					<thead>
 						<tr>
 							<th>Id</th>
@@ -23,11 +23,15 @@
 									<form method="POST" action="/repos/delete/<%= repo.id %>">
 										<input type="hidden" name="authenticity_token" value='<%= env.session.string("csrf") %>'>
 										<input type="hidden" name="id" value="<%= repo.id %>">
-										<button type="submit" class="button is-danger is-small">
-											<span class="icon is-small">
-												<i class="fas fa-trash-alt"></i>
-											</span>
-										</button>
+										<div class="field is-grouped is-grouped-right">
+											<div class="control">
+												<button type="submit" class="button is-danger is-small">
+													<span class="icon is-small">
+														<i class="fas fa-trash-alt"></i>
+													</span>
+												</button>
+											</div>
+										</div>
 									</form>
 								</td>
 							</tr>
@@ -37,27 +41,18 @@
 
 				<form method="POST" action="/repos">
 					<input type="hidden" name="authenticity_token" value='<%= env.session.string("csrf") %>'>
-					<div class="field is-horizontal">
-						<div class="field-body">
-							<div class="field">
-								<div class="control is-expanded">
-									<input type="text" class="input" name="title" placeholder="Title">
-								</div>
-								<% if title_error = env.session.string?("title_error") %>
-									<p class="help is-danger"><%= title_error %></p>
-								<% end %>
-							</div>
-							<div class="field">
-								<div class="control">
-									<button type="submit" class="button is-link">Add</button>
-								</div>
-							</div>
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input type="text" class="input" name="title" placeholder="Title" required>
+						</div>
+						<div class="control">
+							<button type="submit" class="button is-link">Add</button>
 						</div>
 					</div>
+					<% if title_error = env.session.string?("title_error") %>
+						<p class="help is-danger"><%= title_error %></p>
+					<% end %>
 				</form>
-			</div>
-			<div class="column is-4 is-offset-1 box">
-				<h3 class="subtitle has-text-weight-semibold">Users</h3>
 			</div>
 		</div>
 	</div>
