@@ -1,5 +1,8 @@
 require "dotenv"
-Dotenv.load
+
+if Kemal.config.env == "development"
+  Dotenv.load
+end
 
 require "kemal"
 require "kemal-session"
