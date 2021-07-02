@@ -11,8 +11,11 @@ require "kemal-authorizer"
 require "github-repos"
 require "./**"
 
+Kemal.config.env = ENV["KEMAL_ENV"] ||= "development"
+
 Kemal::Session.config do |config|
   config.secret = ENV["SESSION_SECRET"]
+  config.secure = Kemal.config.env == "production"
 end
 
 add_handler CSRF.new
@@ -48,6 +51,15 @@ spawn do
     mut.unlock
 
     sleep 5.minutes
+  end
+end
+
+before_all do |env|
+  if Kemal.config.env == "production"
+    protocol = env.request.headers["X-Forwarded-Proto"]?
+    if protocol.nil? || protocol == "http"
+      env.redirect "https://#{env.request.headers["Host"]}#{env.request.resource}"
+    end
   end
 end
 
