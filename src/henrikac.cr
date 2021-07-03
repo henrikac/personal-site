@@ -8,6 +8,7 @@ require "kemal"
 require "kemal-session"
 require "kemal-csrf"
 require "kemal-authorizer"
+require "kemal-shield"
 require "github-repos"
 require "./**"
 
@@ -17,6 +18,13 @@ Kemal::Session.config do |config|
   config.secret = ENV["SESSION_SECRET"]
   config.secure = Kemal.config.env == "production"
 end
+
+Kemal::Shield.config.csp_directives = {
+  "script-src" => ["'self'", "https://kit.fontawesome.com/"],
+  "connect-src" => ["https://ka-f.fontawesome.com/"]
+}
+
+Kemal::Shield::All.new
 
 add_handler CSRF.new
 add_handler Kemal::Authorizer::AnonymousHandler.new({"/login" => ["GET", "POST"]})
@@ -46,9 +54,9 @@ db_repos.each { |r| repository_titles << r.title }
 
 spawn do
   loop do
-    mut.lock
-    gh_repos = GitHub.fetch_repos("henrikac", repository_titles)
-    mut.unlock
+    #mut.lock
+    #gh_repos = GitHub.fetch_repos("henrikac", repository_titles)
+    #mut.unlock
 
     sleep 5.minutes
   end

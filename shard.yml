@@ -27,3 +27,5 @@ dependencies:
     github: henrikac/github-repos
   kemal-authorizer:
     github: henrikac/kemal-authorizer
+  kemal-shield:
+    github: henrikac/kemal-shield
