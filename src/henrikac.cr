@@ -54,9 +54,9 @@ db_repos.each { |r| repository_titles << r.title }
 
 spawn do
   loop do
-    #mut.lock
-    #gh_repos = GitHub.fetch_repos("henrikac", repository_titles)
-    #mut.unlock
+    mut.lock
+    gh_repos = GitHub.fetch_repos("henrikac", repository_titles)
+    mut.unlock
 
     sleep 5.minutes
   end
