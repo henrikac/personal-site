@@ -34,7 +34,7 @@ shards:
 
   kemal-shield:
     git: https://github.com/henrikac/kemal-shield.git
-    version: 0.1.0
+    version: 0.4.0
 
   kilt:
     git: https://github.com/jeromegn/kilt.git

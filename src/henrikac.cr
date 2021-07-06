@@ -24,7 +24,7 @@ Kemal::Shield.config.csp_directives = {
   "connect-src" => ["https://ka-f.fontawesome.com/"]
 }
 
-Kemal::Shield::All.new
+Kemal::Shield.activate
 
 add_handler CSRF.new
 add_handler Kemal::Authorizer::AnonymousHandler.new({"/login" => ["GET", "POST"]})
